@@ -69,6 +69,9 @@ jobs:
         with:
           name: production-build
           
+      - name: DEBUG | log artifact folder
+        run: ls /home/runner/work/simple-blog-server/simple-blog-server
+        
       - name: Copy Production Build to pwd
         run: cp -R /home/runner/work/simple-blog-server/simple-blog-server/dist ./
           
