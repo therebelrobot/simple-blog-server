@@ -12,4 +12,4 @@ For information on scaling architecture, see [the docs/ARCHITECTURE](./docs/ARCH
 
 ## License
 
-This project is licensed under [the Unlicense](./LICENSE). You are free to use, copy, modify, and/or distribute this code without any restrictions or requirements.
+This project is licensed under [the Unlicense](./docs/LICENSE). You are free to use, copy, modify, and/or distribute this code without any restrictions or requirements.
