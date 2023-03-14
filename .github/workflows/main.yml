@@ -39,24 +39,12 @@ jobs:
       
       - name: Build
         run: yarn build
-        
-      - name: Set ID email for git
-        run: git config --global user.email "contact@aster.hn"
-        
-      - name: Set ID Name for git
-        run: git config --global user.name "Github Action Bot"
-          
-      - name: Force Git Add dist/ folder
-        run: git add --force -- dist
-        
-      - name: Temp Commit for artifact
-        run: git commit -m "Production Build for Deploy"
-        
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: production-build
-          path: dist/
+          path: dist
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main'
@@ -79,16 +67,20 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: production-build
+          path: dist
           
       - name: DEBUG | log pwd
         run: pwd
         
       - name: DEBUG | log artifact folder
         run: ls /home/runner/work/simple-blog-server/simple-blog-server
-        
-      - name: Copy Production Build to pwd
-        run: cp -R /home/runner/work/simple-blog-server/simple-blog-server/dist ./
           
+      - name: Set ID email for git
+        run: git config --global user.email "contact@aster.hn"
+        
+      - name: Set ID Name for git
+        run: git config --global user.name "Github Action Bot"
+        
       - name: Force Git Add dist/ folder
         run: git add --force -- dist
         
