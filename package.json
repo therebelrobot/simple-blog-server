@@ -1,7 +1,7 @@
 {
   "name": "simple-blog-server",
   "packageManager": "yarn@3.3.1",
-  "main": "dist/index.js",
+  "main": "dist/src/app.js",
   "scripts": {
     "build": "yarn build:app && yarn build:docker",
     "build:app": "tsc",
@@ -10,7 +10,7 @@
     "dev:app": "nodemon --exec ts-node src/app.ts",
     "dev:docker": "docker-compose up -d mongo",
     "dev:docker:stop": "docker-compose down",
-    "start:app": "node dist/index.js",
+    "start:app": "node dist/src/app.js",
     "start:docker": "docker-compose up -d",
     "test": "jest --forceExit --detectOpenHandles"
   },
