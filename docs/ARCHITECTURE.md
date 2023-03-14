@@ -58,7 +58,7 @@ In addition to NGINX or HAProxy, AWS offers load balancing solutions that can he
 
 ### Caching
 
-To optimize the response time of the platform, we use a distributed caching technology such as Redis or Memcached to cache frequently accessed data such as blog posts or user information. This can help to reduce the number of requests made to the database and improve overall response time.
+To optimize the response time of the platform, we can use a distributed caching technology such as Redis or Memcached to cache frequently accessed data such as blog posts or user information. This can help to reduce the number of requests made to the database and improve overall response time.
 
 ### Monitoring
 
@@ -78,11 +78,11 @@ To ensure database scalability, consider using sharding or partitioning techniqu
 
 ### Knowledge of technologies shared by the teams
 
-Encourage cross-functional training and knowledge sharing among team members. Consider creating documentation and conducting regular knowledge sharing sessions to ensure that all team members are familiar with the technologies used.
+Encourage cross-functional training and knowledge sharing among team members. Proritize creating documentation and conducting regular knowledge sharing sessions to ensure that all team members are familiar with the technologies used.
 
 ### Load balancer performance and capacity
 
-Use load testing to identify the performance bottlenecks in the load balancer and optimize its configuration. Consider using a content delivery network (CDN) to distribute the load and improve performance. Use auto-scaling to increase the capacity of the load balancer during spikes in traffic.
+Use load testing tools to identify the performance bottlenecks in the load balancer and optimize its configuration. Consider using a content delivery network (CDN) to distribute the load and improve performance. Use auto-scaling to increase the capacity of the load balancer during spikes in traffic.
 
 ### Server set up for multi-threading or blocking procedures
 
@@ -90,8 +90,8 @@ Use non-blocking I/O and asynchronous programming techniques to improve server p
 
 ### Caching eviction policies and data consistency
 
-Use a cache eviction policy that balances between data consistency and cache hit rate. Use cache invalidation techniques to ensure that the data in the cache is consistent with the data in the database.
+Use a cache eviction policy that balances between data consistency and cache hit rate. Cache invalidation techniques can be used to ensure that the data in the cache is consistent with the data in the database.
 
 ### Handling spikes in traffic or sudden surges in demand
 
-Use auto-scaling to increase the capacity of the server during spikes in traffic. Consider using a CDN to distribute the load and reduce the load on the server. Use queuing techniques to handle sudden surges in demand and prevent overload.
+Use auto-scaling to increase the capacity of the server during spikes in traffic. A CDN can be used to distribute the load and reduce the load on the server. Use queuing techniques to handle sudden surges in demand and prevent overload.
