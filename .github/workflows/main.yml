@@ -51,7 +51,16 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v2
         
+      - name: Set up npm and Yarn
+        uses: actions/setup-node@v2
+        with:
+           node-version: '14'
+           cache: 'yarn'
+           
       - name: Install caprover
         run: npm install -g caprover
         
@@ -61,7 +70,7 @@ jobs:
           name: production-build
           
       - name: Force Git Add dist/ folder
-        run: git add --force -- file1 file2
+        run: git add --force -- dist
         
       - name: Temp Commit for Caprover
         run: git commit -m "Production Build for Deploy"
