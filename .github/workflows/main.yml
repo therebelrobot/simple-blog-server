@@ -1,0 +1,7 @@
+name: CapRover Deploy
+uses: AlexxNB/caprover-action@v1
+  with:
+    server: 'https://captain.dock.aster.hn/'
+    password: '${{ secrets.CAPROVER_PASSWORD }}'
+    appname: 'audioshake'
+    branch: 'main'
