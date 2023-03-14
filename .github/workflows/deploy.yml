@@ -1,4 +1,4 @@
-name: 'Deploy application'
+name: "deploy"
 
 # **What it does**: Deploys the application from main into the caprover instance.
 # **Why we have it**: To ensure a demo is live.
@@ -15,28 +15,26 @@ permissions:
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group: "${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
   cancel-in-progress: true
 
 jobs:
-
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-    
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Set up npm and Yarn
         uses: actions/setup-node@v2
         with:
-           node-version: '14'
-           cache: 'yarn'
-           
+          node-version: "14"
+          cache: "yarn"
+
       - name: Install dependencies
         run: yarn install
-      
+
       - name: Build
         run: yarn build
 
@@ -50,40 +48,39 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-    
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Set up npm and Yarn
         uses: actions/setup-node@v2
         with:
-           node-version: '14'
-           cache: 'yarn'
-           
+          node-version: "14"
+          cache: "yarn"
+
       - name: Install caprover
         run: npm install -g caprover
-        
+
       - name: Download Production Build
         uses: actions/download-artifact@v3
         with:
           name: production-build
           path: dist
-          
+
       - name: DEBUG | log pwd
         run: pwd
-        
+
       - name: DEBUG | log artifact folder
         run: ls /home/runner/work/simple-blog-server/simple-blog-server
-          
+
       - name: Set ID email for git
         run: git config --global user.email "contact@aster.hn"
-        
+
       - name: Set ID Name for git
         run: git config --global user.name "Github Action Bot"
-        
+
       - name: Force Git Add dist/ folder
         run: git add --force -- dist
-        
+
       - name: Temp Commit for Caprover
         run: git commit -m "Production Build for Deploy"
 
