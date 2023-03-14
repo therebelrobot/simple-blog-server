@@ -1,7 +1,31 @@
-name: CapRover Deploy
-uses: AlexxNB/caprover-action@v1
-  with:
-    server: 'https://captain.dock.aster.hn/'
-    password: '${{ secrets.CAPROVER_PASSWORD }}'
-    appname: 'audioshake'
-    branch: 'main'
+name: 'Deploy application'
+
+# **What it does**: Deploys the application from main into the caprover instance.
+# **Why we have it**: To ensure a demo is live.
+# **Who does it impact**: Caprover instance at https://audioshake.dock.aster.hn/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+# This allows a subsequently queued workflow run to interrupt previous runs
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
+    steps:
+      - name: CapRover Deploy
+        uses: AlexxNB/caprover-action@v1
+        with:
+          server: 'https://captain.dock.aster.hn/'
+          password: '${{ secrets.CAPROVER_PASSWORD }}'
+          appname: 'audioshake'
+          branch: 'main'
