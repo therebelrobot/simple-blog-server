@@ -39,6 +39,12 @@ jobs:
       
       - name: Build
         run: yarn build
+          
+      - name: Force Git Add dist/ folder
+        run: git add --force -- dist
+        
+      - name: Temp Commit for artifact
+        run: git commit -m "Production Build for Deploy"
         
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
