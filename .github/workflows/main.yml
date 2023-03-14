@@ -39,6 +39,12 @@ jobs:
       
       - name: Build
         run: yarn build
+        
+      - name: Set ID email for git
+        run: git config --global user.email "contact@aster.hn"
+        
+      - name: Set ID Name for git
+        run: git config --global user.name "Github Action Bot"
           
       - name: Force Git Add dist/ folder
         run: git add --force -- dist
@@ -74,6 +80,9 @@ jobs:
         with:
           name: production-build
           
+      - name: DEBUG | log pwd
+        run: pwd
+        
       - name: DEBUG | log artifact folder
         run: ls /home/runner/work/simple-blog-server/simple-blog-server
         
