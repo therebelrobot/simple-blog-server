@@ -44,8 +44,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: production-build
-          path: |
-            dist
+          path: dist/
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main'
