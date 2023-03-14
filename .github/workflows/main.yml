@@ -69,6 +69,9 @@ jobs:
         with:
           name: production-build
           
+      - name: Copy Production Build to pwd
+        run: cp -R /home/runner/work/simple-blog-server/simple-blog-server/dist ./
+          
       - name: Force Git Add dist/ folder
         run: git add --force -- dist
         
