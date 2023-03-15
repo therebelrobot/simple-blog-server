@@ -1,4 +1,6 @@
+import { Response } from "express";
 import mongoose from "mongoose";
+import { SinonSpy } from "sinon";
 import config from "../../src/config";
 
 export async function connectToTestDatabase(): Promise<void> {
@@ -29,3 +31,23 @@ export async function clearDatabase(): Promise<void> {
 export function wait(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
+
+export interface MockResponse extends Response {
+  status: SinonSpy;
+  send: SinonSpy;
+  json: SinonSpy;
+}
+
+export const fakeDefaultExport = (moduleRelativePath: string, stubs: any) => {
+  if (require.cache[require.resolve(moduleRelativePath)]) {
+    delete require.cache[require.resolve(moduleRelativePath)];
+  }
+  Object.keys(stubs).forEach((dependencyRelativePath) => {
+    // @ts-ignore
+    require.cache[require.resolve(dependencyRelativePath)] = {
+      exports: stubs[dependencyRelativePath],
+    };
+  });
+
+  return require(moduleRelativePath);
+};

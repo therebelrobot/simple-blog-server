@@ -1,7 +1,8 @@
 // src/routes/asset.route.ts
 
 import express from "express";
-import { createAsset, getAsset } from "../controllers/asset.controller";
+import { getAsset } from "../controllers/asset.controller/getAsset";
+import { createAsset } from "../controllers/asset.controller/createAsset";
 import { upload } from "../middleware/upload.middleware";
 
 const router = express.Router();
